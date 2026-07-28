@@ -60,7 +60,7 @@ narrativeRouter.post("/pieces/:id/answer", async (req, res) => {
     priorTurns,
   });
 
-  if (nextQ.trim() === "READY_TO_DRAFT") {
+  if (nextQ.includes("READY_TO_DRAFT")) {
     db.prepare(`UPDATE pieces SET status = 'drafting' WHERE id = ?`).run(id);
     return res.json({ readyToDraft: true });
   }
