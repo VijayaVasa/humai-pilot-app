@@ -1,0 +1,128 @@
+/* HUMAI brand constants — from HUMAI_pptx_agent_prompt_v2.md. Do not invent new colors. */
+:root {
+  --navy: #194461;
+  --mint: #7DCFB6;
+  --coral: #FFA69E;
+  --lime: #C7DE34;
+  --charcoal: #414141;
+  --offwhite: #F2F2F2;
+  --white: #FFFFFF;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--offwhite);
+  color: var(--charcoal);
+  font-family: "DM Sans", Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.shell {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.topbar {
+  background: var(--navy);
+  color: var(--white);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar .badge {
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.topbar nav a {
+  color: var(--white);
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+.topbar nav a:hover { opacity: 1; text-decoration: underline; }
+
+.card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(25,68,97,0.08);
+}
+
+.card.equal-weight {
+  border-top: 4px solid var(--mint);
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 20px;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn-primary { background: var(--navy); color: var(--white); }
+.btn-primary:hover { background: #123249; }
+.btn-secondary { background: var(--offwhite); color: var(--navy); border: 1px solid var(--navy); }
+.btn-coral { background: var(--coral); color: var(--navy); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+textarea, input[type="text"] {
+  width: 100%;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 14px;
+  padding: 12px;
+  border: 1px solid #d5d9dd;
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.status-interviewing { background: #E4F1FF; color: var(--navy); }
+.status-drafting { background: #FFF4E0; color: #8a5a00; }
+.status-needs_revision { background: var(--coral); color: var(--navy); }
+.status-in_review { background: var(--mint); color: var(--navy); }
+.status-approved { background: var(--lime); color: var(--navy); }
+.status-shipped { background: var(--navy); color: var(--white); }
+
+.qa-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+.qa-pass { color: #1a7a3c; font-weight: 700; }
+.qa-fail { color: #b3261e; font-weight: 700; }
+
+.task-picker { display: flex; gap: 20px; }
+.task-picker .card { flex: 1; text-align: center; cursor: pointer; }
+.task-picker .card:hover { box-shadow: 0 4px 12px rgba(25,68,97,0.15); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #e2e2e2; font-size: 14px; }
+th { color: var(--navy); font-family: Arial, sans-serif; }
+
+.qa-turn { margin-bottom: 16px; }
+.qa-turn .q { font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.qa-turn .a { color: var(--charcoal); }
