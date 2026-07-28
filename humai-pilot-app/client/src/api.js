@@ -1,4 +1,4 @@
-const BASE = "/api";
+const BASE = "https://humai-pilot-app.onrender.com/api";
 
 async function req(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
