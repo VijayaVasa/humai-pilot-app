@@ -6,6 +6,7 @@ import { initDb } from "./db.js";
 import { narrativeRouter } from "./routes/narrative.js";
 import { slideRouter } from "./routes/slide.js";
 import { piecesRouter } from "./routes/pieces.js";
+import { uploadRouter } from "./routes/upload.js";
 
 const app = express();
 // FRONTEND_URL should be set on Render once you have your Vercel URL, e.g.
@@ -19,6 +20,7 @@ app.get("/api/health", (req, res) => res.json({ ok: true }));
 app.use("/api/narrative", narrativeRouter);
 app.use("/api/slide", slideRouter);
 app.use("/api", piecesRouter); // /api/pieces (history), /api/pieces/:id/review, /ship
+app.use("/api", uploadRouter); // /api/extract-text
 
 const PORT = process.env.PORT || 8787;
 

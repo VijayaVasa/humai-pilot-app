@@ -46,7 +46,12 @@ h1, h2, h3 {
   border-radius: 6px;
   font-weight: 700;
   letter-spacing: 0.05em;
+  color: var(--white);
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
 }
+.topbar .badge:hover { border-color: rgba(255,255,255,0.6); }
 
 .topbar nav a {
   color: var(--white);

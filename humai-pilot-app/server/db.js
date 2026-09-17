@@ -21,6 +21,7 @@ export async function initDb() {
       id TEXT PRIMARY KEY,
       type TEXT NOT NULL CHECK (type IN ('narrative', 'slide')),
       title TEXT NOT NULL DEFAULT '(untitled)',
+      created_by TEXT NOT NULL DEFAULT '(unknown)',
       status TEXT NOT NULL DEFAULT 'interviewing'
         CHECK (status IN (
           'interviewing', 'drafting', 'needs_revision',
@@ -31,6 +32,13 @@ export async function initDb() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
       updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
     );
+  `);
+
+  // Safe to run even if the table already existed before this column was
+  // added — ADD COLUMN IF NOT EXISTS is a no-op on a database that already
+  // has it, so this doesn't need a separate migration step.
+  await pool.query(`
+    ALTER TABLE pieces ADD COLUMN IF NOT EXISTS created_by TEXT NOT NULL DEFAULT '(unknown)';
   `);
 
   await pool.query(`

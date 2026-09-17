@@ -15,16 +15,19 @@ const SLIDE_QUESTIONS = [
 ];
 
 slideRouter.post("/pieces", async (req, res) => {
-  const { sourceNotes, title } = req.body;
+  const { sourceNotes, title, createdBy } = req.body;
   if (!sourceNotes || !sourceNotes.trim()) {
     return res.status(400).json({ error: "sourceNotes is required" });
+  }
+  if (!createdBy || !createdBy.trim()) {
+    return res.status(400).json({ error: "createdBy (your name) is required" });
   }
 
   const id = nanoid();
   await pool.query(
-    `INSERT INTO pieces (id, type, title, status, source_notes)
-     VALUES ($1, 'slide', $2, 'interviewing', $3)`,
-    [id, title || "(untitled deck)", sourceNotes]
+    `INSERT INTO pieces (id, type, title, created_by, status, source_notes)
+     VALUES ($1, 'slide', $2, $3, 'interviewing', $4)`,
+    [id, title || "(untitled deck)", createdBy.trim(), sourceNotes]
   );
 
   const turnId = nanoid();

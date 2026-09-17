@@ -7,7 +7,7 @@ export const piecesRouter = Router();
 // History list — every piece regardless of type, most recently updated first.
 piecesRouter.get("/pieces", async (req, res) => {
   const result = await pool.query(
-    `SELECT id, type, title, status, created_at, updated_at FROM pieces ORDER BY updated_at DESC`
+    `SELECT id, type, title, created_by, status, created_at, updated_at FROM pieces ORDER BY updated_at DESC`
   );
   res.json(result.rows);
 });

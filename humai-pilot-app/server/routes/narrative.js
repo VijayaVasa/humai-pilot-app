@@ -12,18 +12,21 @@ export const narrativeRouter = Router();
 
 // Start a new narrative piece: submit rough input, get the synthesis + first question.
 narrativeRouter.post("/pieces", async (req, res) => {
-  const { sourceNotes, title } = req.body;
+  const { sourceNotes, title, createdBy } = req.body;
   if (!sourceNotes || !sourceNotes.trim()) {
     return res.status(400).json({ error: "sourceNotes is required" });
+  }
+  if (!createdBy || !createdBy.trim()) {
+    return res.status(400).json({ error: "createdBy (your name) is required" });
   }
 
   const id = nanoid();
   const synthesis = await synthesizeSource(sourceNotes);
 
   await pool.query(
-    `INSERT INTO pieces (id, type, title, status, source_notes, synthesis)
-     VALUES ($1, 'narrative', $2, 'interviewing', $3, $4)`,
-    [id, title || "(untitled narrative piece)", sourceNotes, synthesis]
+    `INSERT INTO pieces (id, type, title, created_by, status, source_notes, synthesis)
+     VALUES ($1, 'narrative', $2, $3, 'interviewing', $4, $5)`,
+    [id, title || "(untitled narrative piece)", createdBy.trim(), sourceNotes, synthesis]
   );
 
   const firstQuestion = await nextInterviewQuestion({
